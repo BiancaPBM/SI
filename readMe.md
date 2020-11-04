@@ -5,3 +5,6 @@
  Rulare : py NodeKm.py -> py NodeA.py -> py NodeB.py -> in terminalul unde ruleaza NodeA - alegeti intre CBC si CFB. 
  
  
+<p align="center">
+  <img src="United Diagram.png" width="350" title="hover text">
+</p>
