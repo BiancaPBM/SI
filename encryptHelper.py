@@ -16,11 +16,11 @@ def encryptBlock(block, mode, key,iv):
     if mode == "CBC":
         modeType = AES.MODE_CBC        
         x = xor(block,iv)
-        aesObj = AES.new(key,modeType)
+        aesObj = AES.new(key,modeType,iv)
         encryptedBlock = aesObj.encrypt(x)
     elif mode == "CFB":
         modeType = AES.MODE_CFB
-        aesObj = AES.new(key,modeType)
+        aesObj = AES.new(key,modeType,iv)
         encryptedIv = aesObj.encrypt(iv)
         encryptedBlock = xor(block,encryptedIv)
 
@@ -29,12 +29,12 @@ def encryptBlock(block, mode, key,iv):
 def decryptBlock(block, mode, key,iv):
     if mode == "CBC":
         modeType = AES.MODE_CBC
-        aesObj = AES.new(key,modeType)
+        aesObj = AES.new(key,modeType,iv)
         decryptedBlock = aesObj.decrypt(block)
         plainText = xor(decryptedBlock,iv)
     elif mode == "CFB":
         modeType = AES.MODE_CFB
-        aesObj = AES.new(key,modeType)
+        aesObj = AES.new(key,modeType,iv)
         cypherEncryption = aesObj.encrypt(iv)
         plainText = xor(block,cypherEncryption)
 
