@@ -14,7 +14,7 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # Bind the socket to the port
 server_address = ('localhost', 1337)
-print('\n[NodeK] Starting up on {} port {}'.format(*server_address))
+print('\n[NodeKM] Starting up on {} port {}'.format(*server_address))
 sock.bind(server_address)
 # Listen for incoming connections
 sock.listen(1)
@@ -45,15 +45,15 @@ connectionA.sendall(encryptedIV)
 
 messageFromA  = connectionA.recv(16)
     
-print("\nencrypted key is: ",encryptedKey)
+#print("\nencrypted key is: ",encryptedKey)
 decryptedMessageFromA = encryptHelper.decryptBlock(messageFromA, mode.decode(),key,initializedVector)
-print("\ndecrypred key is:", decryptedKey)
-print("\nDecrypted message from A is: ",decryptedMessageFromA)
+#print("\ndecrypred key is:", decryptedKey)
+#print("\nDecrypted message from A is: ",decryptedMessageFromA)
 
 #bind to node B
 sockNodeB = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_address_b = ('localhost', 2222)
-print('\n[NodeK] Connecting to {} port {}'.format(*server_address_b))
+print('\n[NodeKM] Connecting to {} port {}'.format(*server_address_b))
 sockNodeB.connect(server_address_b)
     
 #send to B mode and encrypted key
@@ -62,8 +62,8 @@ sockNodeB.sendall(encryptedKey)
 sockNodeB.sendall(encryptedIV)
 encryptedMessageFromB = sockNodeB.recv(16)
 decryptedMessageFromB = encryptHelper.decryptBlock(encryptedMessageFromB,mode.decode(),key,initializedVector)
-print("\nlet's see the result")
-if True:
+#print("\nlet's see the result")
+if decryptedMessageFromA == decryptedMessageFromB:
     print("\nOk")
     connectionA.sendall(b"Ok")
     sockNodeB.sendall(b"Ok")
@@ -71,8 +71,8 @@ else:
         print("NOT OK")
 blocksFromA = connectionA.recv(16)
 blocksFromB = sockNodeB.recv(16)
-print("\nBlocks from A: ",blocksFromA)
-print("\nBlocks from B: ",blocksFromB)
+print("\nBlocks from A:",blocksFromA.decode())
+print("\nBlocks from B:",blocksFromB.decode())
 
 
 connectionA.close()

@@ -2,8 +2,8 @@ from Crypto import Random
 from Crypto.Cipher import AES
 import binascii
 
-BS = 16
-pad = lambda s: s + (BS - len(s) % BS) * chr(BS - len(s) % BS) 
+blockSize = 16
+pad = lambda s: s + (blockSize - len(s) % blockSize) * chr(blockSize - len(s) % blockSize) 
 unpad = lambda s : s[:-ord(s[len(s)-1:])]
 initVector = b'aabbccddeeffgghh'
 

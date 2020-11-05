@@ -1,1 +1,2 @@
-Communicationins
+Eu sunt Bianca si sunt studenta in anul 3 la facultatea de informatica!. Acesta este textul care trebuie encriptat si decriptat
+in functie de modul ales(CBC/CFB).
